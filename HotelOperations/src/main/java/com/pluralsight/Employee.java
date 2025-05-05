@@ -1,7 +1,10 @@
 package com.pluralsight;
 
+<<<<<<< HEAD
 import java.time.LocalTime;
 
+=======
+>>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
 public class Employee {
     private String employeeID;
     private String employeeName;
@@ -21,22 +24,51 @@ public class Employee {
         return employeeID;
     }
 
+<<<<<<< HEAD
+=======
+    public void setEmployeeID(String employeeID) {
+        this.employeeID = employeeID;
+    }
+
+>>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
     public String getEmployeeName() {
         return employeeName;
     }
 
+<<<<<<< HEAD
+=======
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+>>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
     public String getDepartment() {
         return department;
     }
 
+<<<<<<< HEAD
+=======
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+>>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
     public double getPayRate() {
         return payRate;
     }
 
+<<<<<<< HEAD
+=======
+    public void setPayRate(double payRate) {
+        this.payRate = payRate;
+    }
+
+>>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
     public double getHoursWorked() {
         return hoursWorked;
     }
 
+<<<<<<< HEAD
     double totalPay(){
         return hoursWorked * payRate;
     }
@@ -61,5 +93,15 @@ public class Employee {
     
     public double punchTimeCard(){
         return 0;
+=======
+    public void setHoursWorked(double hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
+
+    double getOvertimeHours(double payRate, double hoursWorked) {
+        // calculate gross pay
+        // calculate how to pay 1.5x for overtime after 40hrs
+        return (hoursWorked > 40) ? (40 * payRate) + ((payRate * 1.5) * (hoursWorked - 40)): hoursWorked * payRate;
+>>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
     }
 }

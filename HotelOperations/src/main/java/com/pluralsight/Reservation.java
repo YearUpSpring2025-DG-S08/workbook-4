@@ -33,6 +33,7 @@ public class Reservation {
         this.roomType = roomType;
     }
 
+<<<<<<< HEAD
     public double getPrice() throws Exception {
         if(roomType.equalsIgnoreCase("king")){
             price = 139;
@@ -40,6 +41,13 @@ public class Reservation {
             price = 124;
         } else{
             throw new Exception("Invalid room type");
+=======
+    public double getPrice() {
+        if(getRoomType().equals("king")){
+            price = 139;
+        } else if(getRoomType().equals("double")){
+            price = 124;
+>>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
         }
         
         if(isWeekend() == true){
@@ -57,16 +65,24 @@ public class Reservation {
         this.numberOfNights = numberOfNights;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
     public boolean isWeekend() {
         return isWeekend;
     }
 
+<<<<<<< HEAD
     public void setWeekend(boolean weekend) {
         isWeekend = weekend;
     }
     
     public double getReservationTotal() throws Exception {
         return getPrice() * numberOfNights;
+=======
+    public double getReservationTotal(){
+        return reservationTotal;
+>>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
     }
 }

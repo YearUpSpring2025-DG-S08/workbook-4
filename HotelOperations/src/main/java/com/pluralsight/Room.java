@@ -3,6 +3,7 @@ package com.pluralsight;
 public class Room {
     // these private variables are examples of backing variables
     private int numberOfBeds;
+<<<<<<< HEAD
     private double price;
     private boolean isOccupied;
     private boolean isDirty;
@@ -25,10 +26,27 @@ public class Room {
     // the following getters are accessor methods
     // setters are mutator methods
     // removed the setters because we do not want users to be able to change the data
+=======
+    private boolean isOccupied;
+    private boolean isDirty;
+    private boolean isAvailable;
+
+    public Room(int numberOfBeds, boolean isOccupied, boolean isDirty, boolean isAvailable) {
+        this.numberOfBeds = numberOfBeds;
+        this.isOccupied = false;
+        this.isDirty = false;
+        this.isAvailable = false;
+
+    }
+    
+    // the following getters are accessor methods
+    // the following setters are mutator methods
+>>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
     public int getNumberOfBeds() {
         return numberOfBeds;
     }
 
+<<<<<<< HEAD
     public double getPrice(){
         return price;
     }
@@ -38,10 +56,25 @@ public class Room {
         return isOccupied;
     }
 
+=======
+    public void setNumberOfBeds(int numberOfBeds) {
+        this.numberOfBeds = numberOfBeds;
+    }
+
+    public boolean isOccupied() {
+        return isOccupied;
+    }
+
+    public void setOccupied(boolean occupied) {
+        isOccupied = occupied;
+    }
+
+>>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
     public boolean isDirty() {
         return isDirty;
     }
 
+<<<<<<< HEAD
     public boolean isAvailable() {
         return isAvailable;
     }
@@ -63,4 +96,18 @@ public class Room {
         isDirty = false;
         return cleanroom;
     }
+=======
+    public void setDirty(boolean dirty) {
+        isDirty = dirty;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+    
+>>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
 }
