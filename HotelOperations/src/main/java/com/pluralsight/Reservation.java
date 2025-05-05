@@ -7,8 +7,8 @@ public class Reservation {
     private int numberOfNights;
     private boolean isWeekend;
     private double reservationTotal;
-    
-    public Reservation(String guestName, String roomType, double price, int numberOfNights, boolean isWeekend){
+
+    public Reservation(String guestName, String roomType, double price, int numberOfNights, boolean isWeekend) {
         this.guestName = guestName;
         this.roomType = roomType;
         this.price = price;
@@ -33,27 +33,19 @@ public class Reservation {
         this.roomType = roomType;
     }
 
-<<<<<<< HEAD
     public double getPrice() throws Exception {
-        if(roomType.equalsIgnoreCase("king")){
+        if (roomType.equalsIgnoreCase("king")) {
             price = 139;
-        } else if(roomType.equalsIgnoreCase("double")){
+        } else if (roomType.equalsIgnoreCase("double")) {
             price = 124;
-        } else{
+        } else {
             throw new Exception("Invalid room type");
-=======
-    public double getPrice() {
-        if(getRoomType().equals("king")){
-            price = 139;
-        } else if(getRoomType().equals("double")){
-            price = 124;
->>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
         }
-        
-        if(isWeekend() == true){
+
+        if (isWeekend() == true) {
             price = price + (price * .1);
         }
-        
+
         return price;
     }
 
@@ -65,24 +57,16 @@ public class Reservation {
         this.numberOfNights = numberOfNights;
     }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
     public boolean isWeekend() {
         return isWeekend;
     }
 
-<<<<<<< HEAD
     public void setWeekend(boolean weekend) {
         isWeekend = weekend;
     }
-    
-    public double getReservationTotal() throws Exception {
-        return getPrice() * numberOfNights;
-=======
-    public double getReservationTotal(){
-        return reservationTotal;
->>>>>>> bf268ac364f5824cbd2e54a373d9ba2402221abb
+
+    public double getReservationTotal() {
+        return 0;
     }
 }
