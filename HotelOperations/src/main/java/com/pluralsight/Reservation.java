@@ -14,7 +14,7 @@ public class Reservation {
         this.price = price;
         this.numberOfNights = numberOfNights;
         this.isWeekend = false;
-        this.reservationTotal = reservationTotal;
+        this.reservationTotal = 0;
     }
 
     public String getGuestName() {

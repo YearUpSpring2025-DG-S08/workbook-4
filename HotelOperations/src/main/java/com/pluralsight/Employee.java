@@ -3,14 +3,14 @@ package com.pluralsight;
 import java.time.LocalTime;
 
 public class Employee {
-    private String employeeID;
+    private int employeeID;
     private String employeeName;
     private String department;
     private double payRate;
     private double hoursWorked;
-    private double punchInTime = -1;
+    private double punchInTime;
 
-    public Employee(String employeeID, String employeeName, String department, double payRate, double hoursWorked) {
+    public Employee(int employeeID, String employeeName, String department, double payRate) {
         this.employeeID = employeeID;
         this.employeeName = employeeName;
         this.department = department;
@@ -18,11 +18,11 @@ public class Employee {
         this.hoursWorked = 0;
     }
 
-    public String getEmployeeID() {
+    public int getEmployeeID() {
         return employeeID;
     }
     
-    public void setEmployeeID(String employeeID) {
+    public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
 
@@ -72,28 +72,11 @@ public class Employee {
 
     
     public void punchIn(double time){
-        if(punchInTime != -1){
-            punchInTime = time;
-            System.out.println("Punched in: " + time + " hours");
-        } else{
-            System.out.println("You are already punched in");
-        }
+        this.punchInTime = time;
     }
     
     public void punchOut(double time){
-        if(punchInTime != -1){
-            if(time > punchInTime){
-                double shiftLength = time - punchInTime;
-                hoursWorked += shiftLength;
-                punchInTime = -1;
-                System.out.println("Punched out: " + time + "hours");
-                System.out.println("You worked " + hoursWorked + " hours");
-            } else{
-                System.out.println("Punch-out time must be after punch-in time");
-            }
-        } else{
-            System.out.println("You must be punched in");
-        }
+       this.hoursWorked += time - punchInTime;
     }
     
     public void punchTimeCard() {
