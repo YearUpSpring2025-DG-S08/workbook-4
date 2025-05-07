@@ -5,16 +5,16 @@ public class Reservation {
     private String roomType;
     private double price;
     private int numberOfNights;
-    private boolean isWeekend;
-    private double reservationTotal;
+    private boolean isWeekend = false;
 
-    public Reservation(String guestName, String roomType, double price, int numberOfNights, boolean isWeekend) {
+    public Reservation(String guestName, String roomType, int numberOfNights, boolean isWeekend) {
         this.guestName = guestName;
         this.roomType = roomType;
-        this.price = price;
+        if(numberOfNights <= 0){
+            throw new IllegalArgumentException("You cannot book a reservation for 0 night!");
+        }
         this.numberOfNights = numberOfNights;
-        this.isWeekend = false;
-        this.reservationTotal = 0;
+        this.isWeekend = isWeekend;
     }
 
     public String getGuestName() {
@@ -25,14 +25,25 @@ public class Reservation {
         this.guestName = guestName;
     }
 
+    // the room type can either be a "king" or "double"
     public String getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
+    public void setRoomType(String roomType){
+        if(roomType.isBlank()){
+            throw new IllegalArgumentException("You must pick a King or Double");
+        }
+        
+        if(roomType.equalsIgnoreCase("king")){
+            this.roomType = roomType;
+        } else if(roomType.equalsIgnoreCase("double")){
+            this.roomType = roomType;
+        }
     }
-
+    
+    // the price of a "king" is $139/night or "double" is $124/night
+    // a weekend stay increases price by 10%
     public double getPrice() throws Exception {
         if (roomType.equalsIgnoreCase("king")) {
             price = 139;
@@ -42,7 +53,7 @@ public class Reservation {
             throw new Exception("Invalid room type");
         }
 
-        if (isWeekend() == true) {
+        if (isWeekend == true) {
             price = price + (price * .1);
         }
 
@@ -53,20 +64,20 @@ public class Reservation {
         return numberOfNights;
     }
 
-    public void setNumberOfNights(int numberOfNights) {
+    public void setNumberOfNights(int numberOfNights){
         this.numberOfNights = numberOfNights;
     }
-
-
+    
     public boolean isWeekend() {
         return isWeekend;
     }
 
-    public void setWeekend(boolean weekend) {
-        isWeekend = weekend;
+    public void setWeekend(boolean isWeekend) {
+        this.isWeekend = isWeekend;
     }
 
-    public double getReservationTotal() {
-        return 0;
+    public double getReservationTotal() throws Exception {
+        double reservationTotal = getPrice() * numberOfNights;
+        return reservationTotal;
     }
 }

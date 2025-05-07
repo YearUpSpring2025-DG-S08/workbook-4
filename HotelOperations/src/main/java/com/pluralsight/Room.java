@@ -7,9 +7,9 @@ public class Room {
     private boolean isOccupied;
     private boolean isDirty;
 
-    public Room(int numberOfBeds, double price) {
+    public Room(int numberOfBeds) {
         this.numberOfBeds = numberOfBeds;
-        this.price = price;
+        this.price = 124;
         this.isOccupied = false;
         this.isDirty = false;
    
@@ -33,23 +33,26 @@ public class Room {
         return isDirty;
     }
 
+    // a room is only available if it is clean and not currently occupied
     public boolean isAvailable() {
         return (!this.isOccupied) && (!this.isDirty);
     }
 
+    // once a room is checked in, it should be occupied and dirty
     public void checkIn() {
         this.isOccupied = true;
         this.isDirty = true;
         return;
     }
 
-    public void checkout() {
+    // when a guest checks out, a room must be cleaned before a guest can check in
+    public void checkOut() {
         this.isOccupied = false;
-        this.isDirty = true;
+        cleanRoom();
         return;
     }
 
-    public void cleanroom() {
+    public void cleanRoom() {
         this.isDirty = false;
         return;
     }
