@@ -83,22 +83,24 @@ public class Employee {
     
     // create a punchTimeCard method to record punchIn and punchOut - 24hr period
     public void punchTimeCard(double time){
-       if(time < 0){
+       if(time < 0 || time > 24){
            throw new IllegalArgumentException("Incorrect punch time inputted");
        } 
        
        if(punchedIn){
            this.punchInTime = time;
+           punchedIn = true;
            System.out.println("Punched in at: " + this.punchInTime);
-       } else if(time < punchInTime){
-           throw new IllegalArgumentException("Punch out time cannot be earlier than Punch in time");
+       } else if(time < this.punchInTime){
+           throw new IllegalArgumentException("Punch out time cannot be earlier than punch in time");
+       } else {
+           double shift = time - this.punchInTime;
+           this.hoursWorked += shift;
        }
        
-       double shift = time - punchInTime;
-       this.hoursWorked += shift;
-
-        System.out.println("Punched out at: " + time );
-        System.out.println("Your shift lasted: " + String.format("%.2f", hoursWorked) + " hours!");
+       punchedIn = false;
+       System.out.println("Punched out at: " + time);
+       System.out.println("Your shift lasted: " + String.format("%.2f", this.hoursWorked) + " hours!");
    }
     
    // create overloaded methods for punchIn and punchOut that does not take any input
@@ -109,7 +111,8 @@ public class Employee {
         double minutes = startTime.getMinute() / 60f; // dividing by 60 to get a fraction of an hour
         // reason being: turning the output into a decimal for our 24hr period
         this.punchInTime = (hours + minutes);
-        System.out.println("Punched in at: " + this.punchInTime);
+        System.out.println("Punched in at: " + String.format("%.2f", this.punchInTime));
+        punchedIn = true;
     }
 
     public void punchOut() {
@@ -118,23 +121,30 @@ public class Employee {
         double minutes = endTime.getMinute() / 60f;
         double punchOutTime = (hours + minutes);
         this.hoursWorked = (punchOutTime - this.punchInTime);
-        System.out.println("Punched out at: " + punchOutTime);
+        System.out.println("Punched out at: " + String.format("%.2f", punchOutTime));
+        punchedIn = false;
     }
     
     public void punchTimeCard(){
         LocalTime now = LocalTime.now();
         double shiftTime = now.getHour() + (now.getMinute()/60f);
         
-        if(punchedIn){
-            shiftTime = punchInTime;
-            System.out.println("Punched in at: " + this.punchInTime);
-        } else if(!punchedIn){
+        if(!punchedIn){
+            punchInTime = shiftTime;
+            punchedIn = true;
+            System.out.println("Punched in at: " + punchInTime);
+        } else if(shiftTime <= 0){
             System.out.println("You must be punched in!");
+        } else{
+            double shiftDuration = shiftTime - punchInTime;;
+            if(shiftDuration < 0){
+                throw new IllegalArgumentException("You must be punched in to be able to punch out");
+            }
+            
+            this.hoursWorked += shiftDuration;
+            punchedIn = false;
+            System.out.println("Punched out at: " + String.format("%.2f", shiftTime));
+            System.out.println("Your shift lasted: " + String.format("%.2f", hoursWorked) + " hours!");
         }
-        
-        double shiftDuration = shiftTime - punchInTime;
-        this.hoursWorked += shiftDuration;
-        System.out.println("Punched out at: " + String.format("%.2f", shiftTime));
-        System.out.println("Your shift lasted: " + String.format("%.2f", hoursWorked) + " hours!");
     }
 }

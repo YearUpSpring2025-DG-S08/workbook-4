@@ -80,7 +80,7 @@ class ReservationTest {
     }
 
     @Test
-    public void testGetPriceShouldBeEqualTo139() throws Exception {
+    public void testGetPriceKingShouldBeEqualTo139() throws Exception {
         // arrange
         Reservation r1 = new Reservation("Damian", "King", 3, false);
 
@@ -92,7 +92,7 @@ class ReservationTest {
     }
 
     @Test
-    public void testGetPriceShouldBeEqualTo124() throws Exception {
+    public void testGetPriceDoubleShouldBeEqualTo124() throws Exception {
         // arrange
         Reservation r1 = new Reservation("Damian", "Double", 3, false);
 
@@ -114,9 +114,20 @@ class ReservationTest {
         // assert
       assertEquals(458.70, total, 0.001);
     }
+    @Test
+    public void testGetReservationTotalShouldBeEqualToDoubleAndWeekendPrice() throws Exception{
+        // arrange
+        Reservation r1 = new Reservation("Damian", "Double", 3, true);
+
+        // act
+        double total = r1.getReservationTotal();
+
+        // assert
+        assertEquals(409.20, total, 0.001);
+    }
 
     @Test
-    public void testGetReservationTotalShouldBeEqualToKingPrice() throws Exception{
+    public void testGetReservationTotalShouldBeEqualToKingPricePerDay() throws Exception{
         // arrange
         Reservation r1 = new Reservation("Damian", "King", 3, false);
 
@@ -125,5 +136,17 @@ class ReservationTest {
 
         // assert
         assertEquals(417, total, 0.001);
+    }
+
+    @Test
+    public void testGetReservationTotalShouldBeEqualToDoublePricePerDay() throws Exception{
+        // arrange
+        Reservation r1 = new Reservation("Damian", "Double", 3, false);
+
+        // act
+        double total = r1.getReservationTotal();
+
+        // assert
+        assertEquals(372, total, 0.001);
     }
 }

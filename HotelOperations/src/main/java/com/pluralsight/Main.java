@@ -11,13 +11,28 @@ public class Main {
                 Welcome to the Silver Lantern Inn!""";
         System.out.println(welcomeToHotelPrompt);
 
-        // test Reservation class
-        Reservation r1 = new Reservation("Damian", "King", 3, false);
-        System.out.println(r1.getGuestName());
-        System.out.println(r1.getRoomType());
-        System.out.println(r1.getNumberOfNights());
-        System.out.println("Is it a weekend stay?: " + r1.isWeekend());
-        System.out.println("The room price is: " + r1.getPrice());
-        System.out.printf("Reservation price is: %.2f", r1.getReservationTotal());
+        // test Employee class
+        Employee e1 = new Employee(1,"Diamond","Teacher Lead", 21);
+        System.out.println(e1.getEmployeeID());
+        System.out.println(e1.getName());
+        System.out.println(e1.getDepartment());
+        System.out.println(e1.getPayRate());
+//        e1.punchIn();
+//        System.out.println(e1.punchedIn);
+//        System.out.println(    );
+//        e1.punchTimeCard(24);
+//        System.out.println(e1.punchedIn);
+//        System.out.println(   );
+        System.out.println(e1.punchedIn);
+        e1.punchTimeCard(7);
+        System.out.println(e1.punchedIn);
+        e1.punchTimeCard(13);
+        System.out.println(e1.punchedIn);
+//        System.out.println(   );
+//        e1.punchTimeCard();
+//        System.out.println(e1.punchedIn);
+        
+        
+                
     }
 }
