@@ -9,7 +9,7 @@ public class Hand {
         cards = new ArrayList<Card>();
     }
     
-    // a Card id dealt to the Hand and the Hand stores the card
+    // a Card is dealt to the Hand and the Hand stores the card
     public void deal(Card card){
         this.cards.add(card);
     }
@@ -25,5 +25,24 @@ public class Hand {
             total += card.getPointValue();
         }
         return total;
+    }
+    
+    public String viewHand(){
+//        System.out.println(cards); //if you add a toString method on CArd
+//
+//        for(Card card: cards){
+//            System.out.println(card.getSuit() + " " + card.getValue());
+//        }
+        return cards.toString() + " Total Value: " + getValue();
+    }
+
+    @Override
+    public String toString() {
+
+        for(Card card: cards){
+            System.out.print(card + " ");
+        }
+        
+        return cards.toString();
     }
 }

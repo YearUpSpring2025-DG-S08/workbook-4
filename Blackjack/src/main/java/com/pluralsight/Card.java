@@ -69,4 +69,10 @@ public class Card {
         this.isFaceUp = !this.isFaceUp;
         return this.isFaceUp;
     }
+
+    @Override
+    public String toString() {
+        
+      return value + " " + suit;
+    }
 }
