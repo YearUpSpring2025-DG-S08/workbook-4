@@ -18,54 +18,42 @@ public class Main {
         System.out.println("Welcome to Pomodoro Blackjack. What is your name?");
         Player player = new Player();
         String playerName = scanner.nextLine().trim();
-        players.add(new Player(playerName, false));
+        player.setPlayerName(playerName);
+        players.add(player);
 
         
-        for(Player name : players){
-            System.out.println(name.getName());
+        System.out.println("Will there be any other players? Y/N");
+        String morePlayers = scanner.nextLine().trim().toUpperCase();
+
+        while (!morePlayers.equalsIgnoreCase("N")) {
+            if (morePlayers.equalsIgnoreCase("Y")) {
+                System.out.println("What is your name?");
+                Player newPlayer = new Player();
+                String newPlayerName = scanner.nextLine().trim();
+                newPlayer.setPlayerName(newPlayerName);
+                players.add(newPlayer);
+            } else {
+                System.out.println("Better Luck next time!");
+            }
+        }
+
+        
+        // starting the game
+        System.out.println("Starting game.. Dealing first cards...");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
         
         
-        // we're using the setter to set the name that was inputted by the user
-        // needed help understanding what the purpose of a setter was and when to use it
-//        player.setName(playerName);
-//        players.add(player);
-//
-//        for(Player playerEx : players){
-//            System.out.println(playerEx.getName());
-//        }
-
-//        System.out.println("Are you sure that's the name you want? You can update if you like");
-//        playerName = scanner.nextLine().trim();
-//        player.setName(playerName);
-//        players.add(player);
-
-//        System.out.println(player);
-
-//        for(Player playerEx : players){
-//            System.out.println(playerEx.getName());
-//        }
-
+        for(Player p : players){
+            Dealer(deck, p);
+            System.out.println(p);
+        }
         
-//        String morePlayers;
-//        do {
-//            System.out.println("Will there be any other players? Y/N");
-//            morePlayers = scanner.nextLine().trim().toUpperCase();
-//
-//            switch (morePlayers) {
-//                case "Y":
-//                    System.out.println("What is your name?");
-//                    String newPlayerName = scanner.nextLine().trim();
-//                    players.add(new Player(playerName, false));
-//                    break;
-//                case "N":
-//                    break;
-//                default:
-//                    System.out.println("Will there be new players or not?");
-//                    break;
-//            }
-//        } while (morePlayers != "N");
-
+//        // get total value of cards so far
+//        System.out.print(player);
 
 //        Hand hand1 = new Hand();
 //
@@ -81,33 +69,10 @@ public class Main {
 //         c2.flip();
 //         display(c1);
 //         display(c2);
-//         
+
 //         // get total value of cards so far
 //        System.out.print(player);
         
-         
-//
-//        Card c2 = deck.deal();
-//        c2.flip();
-//
-//        display(c2);
-//
-//        hand1.deal(c1);
-//        hand1.deal(c2);
-
-//        // deal 5 cards;
-//        for(int i = 0; i < 5; i++){
-//            // get a card from the deck
-//            Card card = deck.deal();
-//            card.flip();
-//            System.out.println(card.getSuit());
-//            System.out.println(card.getValue());
-//            // deal that card to the hand
-//            hand1.deal(card);
-//        }
-
-//        int handValue = hand1.getValue();
-//        System.out.println("This hand is worth " + handValue);
     }
     
     public static void display(Card card){
@@ -118,17 +83,23 @@ public class Main {
         }
     }
     
-    // the following methods are examples of overloading 
-//    public void test(String input){
-//        System.out.println("TEst method 1: " + input);
-//    }
-//    
-//    public String test(){
-//        return "test method 2";
-//    }
-//    public void test(int num){
-//        int total = num + 100;
-//        System.out.println(total);
-//    }
-    
+    // acts as a dealer and deals cards to a player
+    public static void Dealer(Deck deck, Player player){
+        // the deck deals out cards that is added to the player hand
+        // then flipped to reveal the card and is displayed
+        // followed by receiving the total amount for that hand
+        Card c1 = deck.deal();
+        Card c2 = deck.deal();
+        player.addCardToHand(c1);
+        player.addCardToHand(c2);
+        display(c1);
+        display(c2);
+        
+        // using in class example
+//        player.addCardToHand(deck.deal());
+//        player.addCardToHand(deck.deal());
+        
+        
+        
+    }
 }

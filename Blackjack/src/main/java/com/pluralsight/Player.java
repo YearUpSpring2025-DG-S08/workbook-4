@@ -3,37 +3,30 @@ package com.pluralsight;
 // this class will handle each new player that plays Blackjack
 public class Player {
     
-    private int position;
-    private String name;
+    private String playerName;
     private boolean hasCards;
     // this variable allows the usage of the Hand class methods
     // this is NOT the same as an instance of a class
     private Hand playerHand;
 
+    // overloaded player default method
     public Player(){
         this.hasCards = false;
         // we finally instantiate a class when a Player is created
         this.playerHand = new Hand();
     }
-    public Player(String name, boolean hasCards){
-        this.name = name;
+    public Player(String playerName){
+        this.playerName = playerName;
         this.hasCards = false;
+//        this.playerHand = new Hand();
     }
 
-    public int getPosition() {
-        return position;
+    public String getPlayerName() {
+        return playerName;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
     // this method will determine if a player needs a set of cards
@@ -44,22 +37,19 @@ public class Player {
             return true;
         }
     }
-
-    public Hand getPlayerHand() {
-        return playerHand;
-    }
     
     // this method uses another method from the Hand class to give a player cards
     public void addCardToHand(Card card) {
         // the player is dealt a card and alters the hasCards boolean to true
+        // added logic so that if the player has less than 2 cards, they will be dealt 2 cards
         playerHand.deal(card);
+        card.flip();
         hasCards = true;
-        
     }
     
     // add toString method
     @Override
     public String toString() {
-        return name + " " + playerHand.viewHand();
+        return playerName + "'s total hand is: " + playerHand.getValue();
     }
 }
