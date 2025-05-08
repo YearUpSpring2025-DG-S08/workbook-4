@@ -9,6 +9,7 @@ public class Player {
     // this is NOT the same as an instance of a class
     private Hand playerHand;
 
+
     // overloaded player default method
     public Player(){
         this.hasCards = false;
@@ -39,17 +40,28 @@ public class Player {
     }
     
     // this method uses another method from the Hand class to give a player cards
-    public void addCardToHand(Card card) {
+    // switched method to return as a Card
+    public Card addCardToHand(Card card) {
         // the player is dealt a card and alters the hasCards boolean to true
         // added logic so that if the player has less than 2 cards, they will be dealt 2 cards
         playerHand.deal(card);
         card.flip();
         hasCards = true;
+        return card;
+    }
+    
+    // this method will allow the Main method access to the Hand class through the Player
+    public Hand getPlayerHand() {
+        return playerHand;
     }
     
     // add toString method
     @Override
     public String toString() {
         return playerName + "'s total hand is: " + playerHand.getValue();
+    }
+    
+    public String toString(Player player){
+        return playerName + " is the winner!";
     }
 }
