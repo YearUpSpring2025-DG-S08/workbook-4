@@ -31,18 +31,88 @@ public class Hotel {
     // user will specify how many rooms and if it is a suite or basic room
     // method should determine if there are enough rooms available and update the booked inventory
     // method should return true/false if the rooms were booked
-    public boolean bookRoom(int roomsDesired, boolean isSuite){
-        if(isSuite){
-          if(bookedSuites + roomsDesired <= numberOfSuites){
-              bookedSuites += numberOfRooms;
-              return true;
-          } else if(bookedBasicRooms + roomsDesired <= this.numberOfRooms){
-            bookedBasicRooms += roomsDesired;
-            return true;
-          }
-      }
+    public boolean bookRoom2(int roomsDesired, boolean isSuite){
+        if (isSuite) {
+            if((bookedSuites + roomsDesired <= numberOfSuites)){ //doesHaveCapacityForSuite
+                bookedSuites += roomsDesired; //bookSuites
+                return true;
+            }
+            
+        } else {
+            //is basic room
+            if((bookedBasicRooms + roomsDesired <= numberOfRooms)){ //doesHaveCapacityForBasic
+                bookedBasicRooms += roomsDesired; // bookBasic
+                return true;
+            }
+            
+        }
+        
         return false;
     }
+    
+    
+    public boolean bookRoom(int roomsDesired, boolean isSuite) {
+       
+        // if isSuite
+        //      is there capacity (for suite)
+        //          if capacity
+        //              book (suite) and return true
+        //      if not capacity
+        //               return false
+        
+        
+        // if isBasic
+        //        is there capacity (for basic)
+        //             if capacity
+        //                   book (basic) and return true
+        //             if not capacity
+        //                   return false
+        
+        if (isSuite) {
+            if(doesHaveCapacityForSuite(roomsDesired)){
+                bookSuites(roomsDesired);
+                return true;
+            }
+            
+        } else {
+            //is basic room
+            if(doesHaveCapacityForBasic(roomsDesired)){
+                bookBasic(roomsDesired);
+                return true;
+            }
+        }
+        
+        return false;
+        
+    }
+    
+    private boolean doesHaveCapacityForSuite(int desiredNumRooms){
+        return (bookedSuites + desiredNumRooms <= numberOfSuites);
+    }
+    
+    private boolean doesHaveCapacityForBasic(int desiredNumRooms){
+        return (bookedBasicRooms + desiredNumRooms <= numberOfRooms);
+    }
+    
+    private void bookSuites(int desiredNumRooms){
+        bookedSuites += desiredNumRooms;
+    }
+    
+    private void bookBasic(int desiredNumRooms){
+        bookedBasicRooms += desiredNumRooms;
+    }
+    
+//        if(isSuite){
+//          if(bookedSuites + roomsDesired <= numberOfSuites){
+//              bookedSuites += roomsDesired;
+//              return true;
+//          } else if(bookedBasicRooms + roomsDesired <= this.numberOfRooms){
+//            bookedBasicRooms += roomsDesired;
+//            return true;
+//          }
+//      }
+//        return false;
+    
     
     // derived getter - should NOT have a private backing variable
     // should calculate response based on other member variables
